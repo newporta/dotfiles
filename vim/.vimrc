@@ -1,11 +1,42 @@
-" First things first...
 set nocompatible
+filetype off
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+
+call vundle#begin()
+Plugin 'gmarik/Vundle.vim'
+Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-unimpaired'
+Plugin 'tpope/vim-endwise'
+Plugin 'kien/ctrlp.vim'
+Plugin 'vim-scripts/matchit.zip'
+Plugin 'vim-scripts/ruby-matchit'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'scrooloose/syntastic'
+Plugin 'scrooloose/nerdtree'
+Plugin 'ervandew/supertab'
+Plugin 'vim-ruby/vim-ruby'
+Plugin 'tpope/vim-bundler'
+Plugin 'tpope/vim-rake'
+Plugin 'tpope/vim-rails'
+Plugin 'ecomba/vim-ruby-refactoring'
+Plugin 'tpope/vim-cucumber'
+Plugin 'kchmck/vim-coffee-script'
+Plugin 'vim-scripts/YankRing.vim'
+Plugin 'vim-scripts/bufkill.vim'
+Plugin 'godlygeek/tabular'
+Plugin 'tpope/vim-ragtag'
+Plugin 'jpo/vim-railscasts-theme'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'vim-scripts/ZoomWin'
+Plugin 'bronson/vim-trailing-whitespace'
+call vundle#end()
+
+
+" First things first...
 set encoding=utf-8
-
-" Other first things second
-execute pathogen#infect()
-
-" Even more otherish first things third
 set t_Co=256
 syntax on
 filetype plugin indent on
@@ -15,83 +46,105 @@ filetype plugin indent on
 "==============================================================================
 " Who uses "\" ?
 let mapleader = ","
+
 " These should be defaults...
 noremap ' `
 noremap ` '
+
 " Lines and wrap and whitespace visibility are sometimes good
 nnoremap <leader>l :set invnumber<CR>
 nnoremap <leader>w :set invwrap<CR>
 nnoremap <leader>s :set invhls<CR>
 nnoremap <leader>h :set invlist<CR>
+
 " Shift space exits insert/visual select
 inoremap <S-Space> <Esc>
 vnoremap <S-Space> <ESC>
+
 " Make Y work like D and C
 nnoremap <S-y> y$
+
 " Enter a blank line below/above cursor in Normal mode.
 nmap ,o o<Esc>k
 nmap ,O O<Esc>j
+
 " Map better window nav
 map <C-J> <C-W>j
 map <C-K> <C-W>k
 map <C-L> <C-W>l
 map <C-H> <C-W>h
-" Search stuff
+
+" Search stuff with Git grep and use a quickfix window for the results
 nnoremap <leader>a :Ggrep 
 autocmd QuickFixCmdPost *grep* cwindow
+
 " Close a window panel
 nmap <leader>c <C-w>c
+
 " Use <leader>v to open a new vertical split and switch to it
 nnoremap <leader>v <C-w>v<C-w>l
+
 " Let's make it easy to edit/source this file
 nmap <silent> <leader>ev :e $MYVIMRC<cr>
 nmap <silent> <leader>sv :so $MYVIMRC<cr>
+
 " Make/cd to the directory that contains the file in the current buffer.
 " This is useful when you edit a file in a directory that doesn't
 " (yet) exist
 nmap  <leader>md :!mkdir -p %:p:h
 nmap <leader>cd :lcd %:h<CR>
+
 " Arrow keys are evil, discourage usage...
 noremap <Up> <ESC>
 noremap <Down> <ESC>
 noremap <Left> <ESC>
 noremap <Right> <ESC>
+
 " Navigate visible lines, not physical lines
 nnoremap j gj
 nnoremap k gk
+
  " :W saves with sudo
 command! W w !sudo tee % > /dev/null
+
 " Speed up git commands
 nmap <leader>gs :Gstatus<CR>
 nmap <leader>gc :Gcommit<CR>
+
 " Bubble text with unimpared
 nmap <C-Up> [e
 nmap <C-Down> ]e
 vmap <C-Up> [egv
 vmap <C-Down> ]egv
+
 " Switch between buffers
 noremap <tab> :bn<CR>
 noremap <S-tab> :bp<CR>
+
 " Delete buffers faster
 nmap <leader>d :BD<CR>
 nmap <leader>D :bufdo bd<CR>
+
 " Make space useful in normal mode...
 nmap <Space> /
+
 " Groupings are good, make it easy to add them when building regex
-
-
 cmap <leader>\ \(\)<Left><Left>
-"un-neuter Command-T
-nmap <leader>t :CommandT<CR>
+
+" Ctrl-P replaced command-t
+nmap <leader>t :CtrlP<CR>
+
 " Navigate visible lines, not physical lines
 nnoremap j gj
 nnoremap k gk
 
+nmap <leader>n :NERDTreeToggle<cr>
+
 "==============================================================================
 " Set up vim window
 "==============================================================================
-set relativenumber          " Not sure about this.....
 set number                  " I like linenumbers
+set relativenumber          " Not sure about this.....
 highlight LineNr term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE gui=NONE guifg=DarkGrey guibg=NONE
 
 set showmode                " At least let yourself know what mode you're in
@@ -178,3 +231,4 @@ set wildignore+=node_modules/**
 
 set splitright
 set splitbelow
+
