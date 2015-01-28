@@ -1,0 +1,23 @@
+[user]
+  name = Andy Newport
+  email = andy.newport@powershop.co.nz
+[color]
+  diff = auto
+  status = auto
+  branch = auto
+[core]
+  excludesfile = /Users/andy/.gitignore
+[format]
+  pretty = %Cblue%h%Creset %Cgreen[%ar]%Creset (%an) %s
+[merge]
+  tool = mvim
+  cmd=/usr/bin/mvim -d -g $LOCAL $MERGED $REMOTE
+  keepbackup=false
+[push]
+  default = upstream
+[difftool "sourcetree"]
+  cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+  path = 
+[mergetool "sourcetree"]
+  cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+  trustExitCode = true
