@@ -52,6 +52,7 @@ let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 "==============================================================================
 " Fix up some key mappings
 "==============================================================================
+
 " Who uses "\" ?
 let mapleader = ","
 
@@ -65,9 +66,12 @@ nnoremap <leader>w :set invwrap<CR>
 nnoremap <leader>s :set invhls<CR>
 nnoremap <leader>h :set invlist<CR>
 
-" Shift space exits insert/visual select
-inoremap <S-Space> <Esc>
-vnoremap <S-Space> <ESC>
+" Map a better escape - I really want <S-Space> but vim doesn't support it
+" (traditional terminals don't distinguish space from shift space)
+" I map S-Space to send C-_ (that's 0x1F in ASCII hex code) in ITerm and
+" map C-_ to escape here.
+inoremap <C-_> <Esc>
+vnoremap <C-_> <Esc>
 
 " Make Y work like D and C
 nnoremap <S-y> y$
@@ -152,7 +156,7 @@ nmap <leader>n :NERDTreeToggle<cr>
 "==============================================================================
 " Set up vim window
 "==============================================================================
-set number                  " I like linenumbers
+"set number                  " I like linenumbers
 set relativenumber          " Not sure about this.....
 highlight LineNr term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE gui=NONE guifg=DarkGrey guibg=NONE
 
