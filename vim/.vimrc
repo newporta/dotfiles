@@ -1,9 +1,11 @@
 set nocompatible
-filetype off
 
+"==============================================================================
+" Vundle
+"==============================================================================
 " set the runtime path to include Vundle and initialize
+filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
-
 call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 Plugin 'tpope/vim-surround'
@@ -26,7 +28,8 @@ Plugin 'tpope/vim-cucumber'
 Plugin 'kchmck/vim-coffee-script'
 Plugin 'vim-scripts/YankRing.vim'
 Plugin 'vim-scripts/bufkill.vim'
-Plugin 'godlygeek/tabular'
+"Plugin 'godlygeek/tabular'
+Plugin 'tommcdo/vim-lion'
 Plugin 'tpope/vim-ragtag'
 Plugin 'jpo/vim-railscasts-theme'
 Plugin 'scrooloose/nerdcommenter'
@@ -40,6 +43,11 @@ set encoding=utf-8
 set t_Co=256
 syntax on
 filetype plugin indent on
+
+" Set up cursor for insert mode, this is probably ITerm2 specific
+" http://vim.wikia.com/wiki/Change_cursor_shape_in_different_modes
+let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 
 "==============================================================================
 " Fix up some key mappings
@@ -74,7 +82,8 @@ map <C-K> <C-W>k
 map <C-L> <C-W>l
 map <C-H> <C-W>h
 
-" Search stuff with Git grep and use a quickfix window for the results
+" Search stuff with Git grep and use a quickfix window for the results. It's
+" leader-a because it used to be ack but ack is show as shit on massive projects.
 nnoremap <leader>a :Ggrep 
 autocmd QuickFixCmdPost *grep* cwindow
 
