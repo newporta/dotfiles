@@ -1,9 +1,12 @@
 # This is the logon script
 
-#Make git use macvim for it's commit/rebase
-export EDITOR="mvim -f"
+#Make git use vim for it's commit/rebase
+export EDITOR="vim -f"
 export SHELL="/bin/bash"
 export PATH=/usr/local/share/npm/bin:/Users/andy/scripts:/usr/local/sbin:/usr/local/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:$PATH
+
+# export our bashrc so aliases are setup
+[ -r ~/.bashrc ] && source ~/.bashrc
 
 # rbenv
 export RBENV_ROOT=/usr/local/var/rbenv
@@ -42,11 +45,11 @@ function console {
   fi
 }
 
-# Launch macvim, jump to line if there's a colon
+# Launch vim, jump to line if there's a colon
 function m {
   if [[ -n $1 &&  $1 =~ ":" ]]; then
-    mvim +$(echo $1  | cut -d : -f 2) $(echo $1  | cut -d : -f 1)
+    vim +$(echo $1  | cut -d : -f 2) $(echo $1  | cut -d : -f 1)
   else
-    mvim $@
+    vim $@
   fi
 }

@@ -10,8 +10,8 @@
 [format]
   pretty = %Cblue%h%Creset %Cgreen[%ar]%Creset (%an) %s
 [merge]
-  tool = mvim
-  cmd=/usr/bin/mvim -d -g $LOCAL $MERGED $REMOTE
+  tool = vim
+  cmd=/usr/bin/vim -d -g $LOCAL $MERGED $REMOTE
   keepbackup=false
 [push]
   default = upstream
