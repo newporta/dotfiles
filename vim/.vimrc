@@ -35,6 +35,7 @@ Plugin 'jpo/vim-railscasts-theme'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'vim-scripts/ZoomWin'
 Plugin 'bronson/vim-trailing-whitespace'
+Plugin 'christoomey/vim-tmux-navigator'
 call vundle#end()
 
 
@@ -75,6 +76,9 @@ vnoremap <C-_> <Esc>
 
 " Make Y work like D and C
 nnoremap <S-y> y$
+
+" Preserve indentation while pasting text from the OS X clipboard
+noremap <leader>p :set paste<CR>:put  *<CR>:set nopaste<CR>
 
 " Enter a blank line below/above cursor in Normal mode.
 nmap ,o o<Esc>k
@@ -186,6 +190,9 @@ set incsearch               " incremental searching
 set ignorecase              " searches are case insensitive...
 set smartcase               " ... unless they contain at least one capital letter
 set gdefault                " have :s///g flag by default on
+
+" Don't wrap by default
+set nowrap
 
 " Yank to system clipboard
 set clipboard=unnamed
