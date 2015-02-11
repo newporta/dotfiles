@@ -6,7 +6,7 @@
   status = auto
   branch = auto
 [core]
-  excludesfile = /Users/andy/.gitignore
+	excludesfile = ~/.gitignore_global
 [format]
   pretty = %Cblue%h%Creset %Cgreen[%ar]%Creset (%an) %s
 [merge]

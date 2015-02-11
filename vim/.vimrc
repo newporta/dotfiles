@@ -160,7 +160,7 @@ nmap <leader>n :NERDTreeToggle<cr>
 "==============================================================================
 " Set up vim window
 "==============================================================================
-"set number                  " I like linenumbers
+set number                  " I like linenumbers
 set relativenumber          " Not sure about this.....
 highlight LineNr term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE gui=NONE guifg=DarkGrey guibg=NONE
 
