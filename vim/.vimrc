@@ -36,6 +36,8 @@ Plugin 'scrooloose/nerdcommenter'
 Plugin 'vim-scripts/ZoomWin'
 Plugin 'bronson/vim-trailing-whitespace'
 Plugin 'christoomey/vim-tmux-navigator'
+Plugin 'pangloss/vim-javascript'
+Plugin 'mxw/vim-jsx'
 call vundle#end()
 
 
@@ -45,10 +47,10 @@ set t_Co=256
 syntax on
 filetype plugin indent on
 
-" Set up cursor for insert mode, this is probably ITerm2 specific
+" Set up cursor for insert mode, this is probably ITerm2/tmux specific
 " http://vim.wikia.com/wiki/Change_cursor_shape_in_different_modes
-let &t_SI = "\<Esc>]50;CursorShape=1\x7"
-let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
+let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
 
 "==============================================================================
 " Fix up some key mappings
@@ -251,4 +253,7 @@ set wildignore+=node_modules/**
 
 set splitright
 set splitbelow
+
+" Allow jsx syntax in .js files
+let g:jsx_ext_required = 0 " Allow JSX in normal JS files
 
