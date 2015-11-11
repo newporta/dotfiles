@@ -15,7 +15,7 @@ alias aspec='PS_MARKET=au be rspec'
 alias au='PS_MARKET=au be'
 alias nz='PS_MARKET=nz be'
 alias spec='be rspec'
-alias dbundle='ruby -I /Users/andy/Projects/bundler/lib /Users/andy/Projects/bundler/bin/bundle'
+alias dbundle='ruby -I /Users/andy/projects/gems/bundler/lib /Users/andy/projects/gems/bundler/exe/bundle'
 
 #colorise our bash shell
 export CLICOLOR=1

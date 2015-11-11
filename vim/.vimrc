@@ -38,6 +38,7 @@ Plugin 'bronson/vim-trailing-whitespace'
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'pangloss/vim-javascript'
 Plugin 'mxw/vim-jsx'
+Plugin 'lambdatoast/elm.vim'
 call vundle#end()
 
 
@@ -191,7 +192,7 @@ set nohlsearch              " no highlighting search
 set incsearch               " incremental searching
 set ignorecase              " searches are case insensitive...
 set smartcase               " ... unless they contain at least one capital letter
-set gdefault                " have :s///g flag by default on
+"set gdefault                " have :s///g flag by default on
 
 " Don't wrap by default
 set nowrap
