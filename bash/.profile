@@ -1,5 +1,9 @@
 # This is the logon script
 
+#Use brew's openssl cert
+export SSL_CERT_FILE=/usr/local/etc/openssl/cert.pem
+
+
 #Make git use vim for it's commit/rebase
 export EDITOR="vim -f"
 export SHELL="/bin/bash"
