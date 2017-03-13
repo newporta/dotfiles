@@ -1,14 +1,10 @@
 # This is the logon script
 
-#Use brew's openssl cert
-export SSL_CERT_FILE=/usr/local/etc/openssl/cert.pem
-
-
 #Make git use vim for it's commit/rebase
 export EDITOR="vim -f"
 export SHELL="/bin/bash"
 export GOPATH="/Users/andy/projects/go"
-export PATH=/usr/local/share/npm/bin:/Users/andy/scripts:/usr/local/sbin:/usr/local/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:$PATH:$GOPATH/bin
+export PATH=/Users/andy/bin:/usr/local/share/npm/bin:/Users/andy/scripts:/usr/local/sbin:/usr/local/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:$PATH:$GOPATH/bin
 
 # export our bashrc so aliases are setup
 [ -r ~/.bashrc ] && source ~/.bashrc

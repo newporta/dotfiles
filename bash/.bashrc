@@ -14,6 +14,7 @@ alias gco='git checkout'
 alias aspec='PS_MARKET=au be rspec'
 alias au='PS_MARKET=au be'
 alias nz='PS_MARKET=nz be'
+alias uk='PS_MARKET=uk be'
 alias spec='be rspec'
 alias dbundle='ruby -I /Users/andy/projects/gems/bundler/lib /Users/andy/projects/gems/bundler/exe/bundle'
 
