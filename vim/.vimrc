@@ -28,17 +28,18 @@ Plugin 'tpope/vim-cucumber'
 Plugin 'kchmck/vim-coffee-script'
 Plugin 'vim-scripts/YankRing.vim'
 Plugin 'vim-scripts/bufkill.vim'
-"Plugin 'godlygeek/tabular'
 Plugin 'tommcdo/vim-lion'
 Plugin 'tpope/vim-ragtag'
 Plugin 'jpo/vim-railscasts-theme'
+Plugin 'YorickPeterse/happy_hacking.vim'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'vim-scripts/ZoomWin'
 Plugin 'bronson/vim-trailing-whitespace'
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'pangloss/vim-javascript'
 Plugin 'mxw/vim-jsx'
-Plugin 'lambdatoast/elm.vim'
+Plugin 'ElmCast/elm-vim'
+Plugin 'neovimhaskell/haskell-vim'
 call vundle#end()
 
 
@@ -48,10 +49,26 @@ set t_Co=256
 syntax on
 filetype plugin indent on
 
+" TODO evaluate elm format autosaving
+let g:elm_format_autosave = 1
+
 " Set up cursor for insert mode, this is probably ITerm2/tmux specific
 " http://vim.wikia.com/wiki/Change_cursor_shape_in_different_modes
 let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
 let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
+
+" New Vim regex engine is shite for Ruby syntax speed...
+set regexpengine=1
+
+"Use The Silver Searcher for CtrlP https://github.com/ggreer/the_silver_searcher
+if executable('ag')
+  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
+  let g:ctrlp_user_command = 'ag -Q -l --nocolor -g "" %s'
+
+  " ag is fast enough that CtrlP doesn't need to cache
+  let g:ctrlp_use_caching = 0
+endif
+
 
 "==============================================================================
 " Fix up some key mappings
@@ -164,16 +181,19 @@ nmap <leader>n :NERDTreeToggle<cr>
 " Set up vim window
 "==============================================================================
 set number                  " I like linenumbers
-set relativenumber          " Not sure about this.....
-highlight LineNr term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE gui=NONE guifg=DarkGrey guibg=NONE
+"set relativenumber          " Not sure about this.....
 
 set showmode                " At least let yourself know what mode you're in
 set showcmd                 " Show the current command in the lower right corner
 set ch=2                    " Make command line two lines high
 set bg=dark                 " Tell Vim we want the defaults for a dark bg
 colorscheme railscasts      " Set up a decent theme
+"colorscheme happy_hacking
 set scrolloff=8             " Keep the cursor 8 lines from the top and bottom
-set cursorline              " highlight current line
+
+" This would be nice, it slows down navigation too much tho... :(
+"set cursorline              " highlight current line
+
 if has("statusline") && !&cp
   set laststatus=2              " always show the status bar
   set statusline=%f\ %m\ %r     " filename, modified, readonly
@@ -224,7 +244,7 @@ set nobackup
 set nowb
 set noswapfile
 
-set showmatch "Show matching bracets when text indicator is over them
+"set showmatch "Show matching bracets when text indicator is over them
 set mat=2 "How many tenths of a second to blink
 
 set backspace=2                    " Allow backspacing over indent, eol, and the start of an insert
@@ -238,7 +258,7 @@ set ttimeout
 set ttimeoutlen=100
 
 "folding settings
-set foldmethod=syntax
+set foldmethod=manual "Folding based on syntax cripples Ruby syntax highlighting in complex files :(
 set foldnestmax=10
 set nofoldenable        "dont fold by default
 " toggle the current fold
