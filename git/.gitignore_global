@@ -37,7 +37,6 @@ config/initializers/andys_super_global_gems.rb
 # Logs and databases #
 ######################
 *.log
-*.sql
 *.sqlite
 
 # OS generated files #

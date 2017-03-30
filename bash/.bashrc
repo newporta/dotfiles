@@ -18,6 +18,8 @@ alias uk='PS_MARKET=uk be'
 alias spec='be rspec'
 alias dbundle='ruby -I /Users/andy/projects/gems/bundler/lib /Users/andy/projects/gems/bundler/exe/bundle'
 
+alias e='/Applications/Emacs.app/Contents/MacOS/Emacs'
+
 #colorise our bash shell
 export CLICOLOR=1
 export LSCOLORS=gxBxhxDxfxhxhxhxhxcxcx
