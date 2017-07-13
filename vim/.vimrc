@@ -1,8 +1,10 @@
 set nocompatible
 
-"==============================================================================
+"===============================================================================
 " Vundle
-"==============================================================================
+" To get this started you'll wanna install Vundle manually, as of writing:
+" git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+"===============================================================================
 " set the runtime path to include Vundle and initialize
 filetype off
 set rtp+=~/.vim/bundle/Vundle.vim

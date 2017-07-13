@@ -6,6 +6,9 @@ export SHELL="/bin/bash"
 export GOPATH="/Users/andy/projects/go"
 export PATH=/Users/andy/bin:/usr/local/share/npm/bin:/Users/andy/scripts:/usr/local/sbin:/usr/local/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:$PATH:$GOPATH/bin
 
+# Add cargo bin path
+export PATH="$HOME/.cargo/bin:$PATH"
+
 # export our bashrc so aliases are setup
 [ -r ~/.bashrc ] && source ~/.bashrc
 
