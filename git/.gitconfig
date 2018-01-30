@@ -1,14 +1,14 @@
 [user]
   name = Andy Newport
-  email = andy.newport@powershop.co.nz
+	email = andy.newport@nec.co.nz
 [color]
   diff = auto
   status = auto
   branch = auto
 [core]
 	excludesfile = ~/.gitignore_global
-[format]
-  pretty = %Cblue%h%Creset %Cgreen[%ar]%Creset (%an) %s
+#[format]
+#  pretty = %Cblue%h%Creset %Cgreen[%ar]%Creset (%an) %s
 [merge]
   tool = vim
   cmd=/usr/bin/vim -d -g $LOCAL $MERGED $REMOTE

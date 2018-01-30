@@ -9,6 +9,9 @@ export PATH=/Users/andy/bin:/usr/local/share/npm/bin:/Users/andy/scripts:/usr/lo
 # Add cargo bin path
 export PATH="$HOME/.cargo/bin:$PATH"
 
+# Add .local to path for stack
+export PATH="$HOME/.local/bin:$PATH"
+
 # export our bashrc so aliases are setup
 [ -r ~/.bashrc ] && source ~/.bashrc
 
@@ -50,10 +53,10 @@ function console {
 }
 
 # Launch vim, jump to line if there's a colon
-function m {
-  if [[ -n $1 &&  $1 =~ ":" ]]; then
-    vim +$(echo $1  | cut -d : -f 2) $(echo $1  | cut -d : -f 1)
-  else
-    vim $@
-  fi
-}
+#function m {
+  #if [[ -n $1 &&  $1 =~ ":" ]]; then
+    #vim +$(echo $1  | cut -d : -f 2) $(echo $1  | cut -d : -f 1)
+  #else
+    #vim $@
+  #fi
+#}
