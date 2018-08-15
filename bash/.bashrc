@@ -21,7 +21,7 @@ alias dbundle='ruby -I /Users/andy/projects/gems/bundler/lib /Users/andy/project
 alias headers='curl -s -D- -o/dev/null'
 
 alias e='/Applications/Emacs.app/Contents/MacOS/Emacs'
-alias m='nvim'
+alias m='vim'
 
 #colorise our bash shell
 export CLICOLOR=1
