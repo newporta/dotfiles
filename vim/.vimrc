@@ -19,7 +19,6 @@ Plugin 'kien/ctrlp.vim'
 Plugin 'vim-scripts/matchit.zip'
 Plugin 'vim-scripts/ruby-matchit'
 Plugin 'airblade/vim-gitgutter'
-Plugin 'scrooloose/syntastic'
 Plugin 'scrooloose/nerdtree'
 Plugin 'ervandew/supertab'
 Plugin 'vim-ruby/vim-ruby'
@@ -35,6 +34,8 @@ Plugin 'tommcdo/vim-lion'
 Plugin 'tpope/vim-ragtag'
 Plugin 'jpo/vim-railscasts-theme'
 Plugin 'YorickPeterse/happy_hacking.vim'
+Plugin 'junegunn/seoul256.vim'
+Plugin 'joshdick/onedark.vim'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'vim-scripts/ZoomWin'
 Plugin 'bronson/vim-trailing-whitespace'
@@ -43,17 +44,31 @@ Plugin 'pangloss/vim-javascript'
 Plugin 'mxw/vim-jsx'
 Plugin 'ElmCast/elm-vim'
 Plugin 'neovimhaskell/haskell-vim'
+" Plugin 'scrooloose/syntastic'
+Plugin 'w0rp/ale'
+"Plugin 'lilydjwg/colorizer' "Overrides <leader>-t - annoying :(
+Plugin 'elixir-editors/vim-elixir'
 call vundle#end()
 
 
 " First things first...
 set encoding=utf-8
-set t_Co=256
+" Get 24 bit colors working in vim (working under tmux)
+let &t_8f = "\<Esc>[38:2:%lu:%lu:%lum"
+let &t_8b = "\<Esc>[48:2:%lu:%lu:%lum"
+if !has('nvim')
+  set termguicolors
+  set term=xterm-256color
+endif
+"Turn on standard stuff
 syntax on
 filetype plugin indent on
 
 " TODO evaluate elm format autosaving
 let g:elm_format_autosave = 1
+
+" Allow jsx syntax in .js files
+let g:jsx_ext_required = 0 " Allow JSX in normal JS files
 
 " Set up cursor for insert mode, this is probably ITerm2/tmux specific
 " http://vim.wikia.com/wiki/Change_cursor_shape_in_different_modes
@@ -113,8 +128,20 @@ map <C-K> <C-W>k
 map <C-L> <C-W>l
 map <C-H> <C-W>h
 
+" Map terminal movement in nvim
+if has('nvim')
+  tnoremap <Esc> <C-\><C-n>
+  tnoremap <M-[> <Esc>
+  tnoremap <C-v><Esc> <Esc>
+  " Terminal mode:
+  tnoremap <C-h> <c-\><c-n><c-w>h
+  tnoremap <C-j> <c-\><c-n><c-w>j
+  tnoremap <C-k> <c-\><c-n><c-w>k
+  tnoremap <C-l> <c-\><c-n><c-w>l
+endif
+
 " Search stuff with Git grep and use a quickfix window for the results. It's
-" leader-a because it used to be ack but ack is show as shit on massive projects.
+" leader-a because it used to be ack but ack is slow on massive projects.
 nnoremap <leader>a :Ggrep 
 autocmd QuickFixCmdPost *grep* cwindow
 
@@ -184,18 +211,20 @@ nmap <leader>n :NERDTreeToggle<cr>
 " Set up vim window
 "==============================================================================
 set number                  " I like linenumbers
-"set relativenumber          " Not sure about this.....
+set relativenumber          " Not sure about this.....
 
 set showmode                " At least let yourself know what mode you're in
 set showcmd                 " Show the current command in the lower right corner
 set ch=2                    " Make command line two lines high
 set bg=dark                 " Tell Vim we want the defaults for a dark bg
-colorscheme railscasts      " Set up a decent theme
+"colorscheme railscasts      " Set up a decent theme
 "colorscheme happy_hacking
+"let g:seoul256_background = 235
+"colorscheme seoul256
+colorscheme onedark
 set scrolloff=8             " Keep the cursor 8 lines from the top and bottom
-
 " This would be nice, it slows down navigation too much tho... :(
-"set cursorline              " highlight current line
+set cursorline              " highlight current line
 
 if has("statusline") && !&cp
   set laststatus=2              " always show the status bar
@@ -277,7 +306,4 @@ set wildignore+=node_modules/**
 
 set splitright
 set splitbelow
-
-" Allow jsx syntax in .js files
-let g:jsx_ext_required = 0 " Allow JSX in normal JS files
 
