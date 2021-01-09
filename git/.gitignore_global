@@ -9,6 +9,9 @@ nbproject
 .bundle
 tags
 
+# Emacs files
+*.rest
+
 # See https://gist.github.com/tyom/5933371
 config/initializers/andys_super_global_gems.rb
 
