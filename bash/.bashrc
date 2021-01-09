@@ -2,7 +2,7 @@
 # customizing your actual shell
 
 # some aliases
-alias ret='RAILS_ENV=test'
+alias bet='RAILS_ENV=test bundle exec'
 alias cpcommit='git log -n 1 --format="[`git branch|grep \*|cut -c3-` %h] %s" | pbcopy'
 alias be='bundle exec '
 alias gs='git status -s'
