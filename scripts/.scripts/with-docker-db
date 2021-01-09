@@ -1,0 +1,51 @@
+#!/bin/bash -e
+
+image=mdillon/postgis:9.6-alpine
+container_name=my-app-postgresql
+
+if [ -z "$1" ]; then
+    echo "Run command with a dockerised PostgreSQL DB.
+
+usage: $(basename "$0") command
+
+The various PG* environment variables are set so that if command uses
+them - as postgresql's tools and most libpq-based programs do - then
+they will automatically use this DB." >&2
+    exit 1
+fi
+
+export PGPASSWORD=bananapancakes
+export PGPORT=15432
+export PGUSER=postgres
+export PGHOST=localhost
+
+trace() { echo "$*" >&1; }
+
+trace "Starting Dockerised DB"
+if docker container inspect $container_name >/dev/null 2>&1; then
+    trace "* Using existing container"
+    docker container start $container_name >/dev/null
+else
+    trace "* Creating fresh container"
+    docker run --name $container_name -p $PGPORT:5432 -e POSTGRES_PASSWORD=$PGPASSWORD -d $image >/dev/null
+fi
+
+cleanup() {
+    trace "Stopping Dockerised DB"
+    docker container stop "$container_name" >/dev/null;
+}
+
+trap cleanup EXIT
+
+check_count=0
+while ! psql -c 'select 1' >/dev/null 2>&1; do
+    check_count=$(( check_count + 1 ))
+    if [[ $check_count -eq 10 ]]; then
+        trace "Timed out waiting for port to be opened."
+        exit 1
+    fi
+    trace "* Waiting for DB to be available"
+    sleep 1
+done
+
+"$@"

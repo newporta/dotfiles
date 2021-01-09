@@ -4,7 +4,12 @@
 export EDITOR="vim -f"
 export SHELL="/bin/bash"
 export GOPATH="/Users/andy/projects/go"
-export PATH=/Users/andy/bin:/usr/local/share/npm/bin:/Users/andy/scripts:/usr/local/sbin:/usr/local/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:$PATH:$GOPATH/bin
+export TERRAFORM_PATH="/usr/local/opt/terraform@0.11/bin"
+export PYTHON_BINS="/Users/newportandy/Library/Python/3.8/bin"
+export PATH=$TERRAFORM_PATH:$PYTHON_BINS:/Users/andy/bin:/usr/local/share/npm/bin:/Users/andy/scripts:/usr/local/sbin:/usr/local/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:$PATH:$GOPATH/bin
+
+#Add some helpful scripts
+export PATH="$HOME/.scripts:$PATH"
 
 # Add cargo bin path
 export PATH="$HOME/.cargo/bin:$PATH"
@@ -15,9 +20,19 @@ export PATH="$HOME/.local/bin:$PATH"
 # export our bashrc so aliases are setup
 [ -r ~/.bashrc ] && source ~/.bashrc
 
+# nvm - via brew
+export NVM_DIR="$HOME/.nvm"
+. "/usr/local/opt/nvm/nvm.sh"
+
 # rbenv
 export RBENV_ROOT=/usr/local/var/rbenv
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+
+
+export PYENV_ROOT="$HOME/.pyenv"
+if command -v pyenv 1>/dev/null 2>&1; then
+  eval "$(pyenv init -)"
+fi
 
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
